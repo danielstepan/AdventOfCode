@@ -30,3 +30,24 @@ func CopyGrid(grid [][]string) [][]string {
 	}
 	return newGrid
 }
+
+func PrintGrid(grid [][]string) {
+	for _, row := range grid {
+		for _, cell := range row {
+			fmt.Print(cell)
+		}
+		fmt.Println()
+	}
+}
+
+func CountElemens(grid [][]string, element string) int {
+	count := 0
+	for _, row := range grid {
+		for _, cell := range row {
+			if cell == element {
+				count++
+			}
+		}
+	}
+	return count
+}
