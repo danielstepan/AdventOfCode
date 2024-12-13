@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func ReadFileLines(name string) (content []string, err error) {
@@ -24,6 +25,20 @@ func ReadFileLines(name string) (content []string, err error) {
 func StringSliceToIntSlice(stringSlice []string) ([]int, error) {
 	intSlice := make([]int, len(stringSlice))
 	for i, str := range stringSlice {
+		num, err := strconv.Atoi(str)
+		if err != nil {
+			return nil, fmt.Errorf("error converting %s: %v", str, err)
+		}
+		intSlice[i] = num
+	}
+	return intSlice, nil
+}
+
+func StringToIntSlice(s string) ([]int, error) {
+	separated := strings.Fields(s)
+
+	intSlice := make([]int, len(separated))
+	for i, str := range separated {
 		num, err := strconv.Atoi(str)
 		if err != nil {
 			return nil, fmt.Errorf("error converting %s: %v", str, err)
